@@ -1,0 +1,36 @@
+---
+title: "Exercise 3"
+output: html_document
+---
+
+
+```{r, echo=FALSE}
+library(jsonlite)
+# Please use your own key!
+api_key <- 'Y0SBZBEY1KHGBJKVR'
+
+# Store the name of your band in a variable
+band <- 'Chris Thile'
+band_no_spaces <- gsub(' ', '+', band)
+
+# Write a query to get the first biography of your band on echonest
+biography_base <- 'http://developer.echonest.com/api/v4/artist/biographies?api_key='
+biography_url <- paste0(biography_base, api_key, '&name=', band_no_spaces, '&results=1')
+bio <- fromJSON(biography_url)
+bio_text <- bio$response$biographies$text
+
+# Run another query to get band images: see: http://developer.echonest.com/docs/v4/artist.html#images
+### Warning: you may get an error message if the image is not available -- check online that it exists!
+image_base <- 'http://developer.echonest.com/api/v4/artist/images?api_key='
+image_url <- paste0(image_base, api_key, '&name=', gsub(' ', '+', band_no_spaces), '&results=1')
+image_results <- fromJSON(image_url)
+image_to_include <- image_results$response$images$url
+```
+
+Here's a bio I found on `r band`:
+
+>`r bio$response$biographies$text`
+
+And here's a great photo!
+
+![img](`r image_to_include`)
