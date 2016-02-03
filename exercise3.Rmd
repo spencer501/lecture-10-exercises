@@ -11,9 +11,12 @@ api_key <- 'Y0SBZBEY1KHGBJKVR'
 
 # Store the name of your band in a variable
 band <- 'Chris Thile'
+
+# Creat another variable that replaces your spaces with +'s (hint: gsub)
 band_no_spaces <- gsub(' ', '+', band)
 
 # Write a query to get the first biography of your band on echonest
+# See: http://developer.echonest.com/docs/v4/artist.html#biographies
 biography_base <- 'http://developer.echonest.com/api/v4/artist/biographies?api_key='
 biography_url <- paste0(biography_base, api_key, '&name=', band_no_spaces, '&results=1')
 bio <- fromJSON(biography_url)
@@ -25,6 +28,16 @@ image_base <- 'http://developer.echonest.com/api/v4/artist/images?api_key='
 image_url <- paste0(image_base, api_key, '&name=', gsub(' ', '+', band_no_spaces), '&results=1')
 image_results <- fromJSON(image_url)
 image_to_include <- image_results$response$images$url
+
+
+# Outside of this code section, write the (R)Markdown syntax that:
+# - States the name of your band
+# - Displays the bio you just retrieved 
+# - Shows the image of your band
+
+### Bonus ###
+# Make another request, and retrieve/display the band's top songs
+# Wrap the above steps in a function that takes a band as a parameter, and returns the desired info
 ```
 
 Here's a bio I found on `r band`:
