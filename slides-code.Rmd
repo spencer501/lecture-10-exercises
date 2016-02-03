@@ -2,19 +2,3 @@
 title: "slides-code"
 output: html_document
 ---
-This is the code we'll look at in class.  This is just plain old Markdown that let's you render text in **bold** or _italics_.  However, we can put in a chunk or R code, and it will show us the code and results!
-
-```{r, echo=FALSE}
-x <- runif(1:100)
-hist(x)
-```
-
-(It didn't show the **code**)
-
-# Markdown text
-I wrote some markdown text, then did some analysis:
-```{r}
-scores <- runif(100, 50, 100)
-avg <- mean(scores)
-```
-Then I wanted to tell you that the average was `r avg` across `r length(scores)` tests.
